@@ -1,0 +1,18 @@
+name: terraform-module-setup
+on: [push]   
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    container: 
+      image: roxanapopa/docker-git-workflows:v0.3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Init
+        run: terraform init
+      - name: Plan
+        run: terraform plan
+      - name: Apply
+        run: terraform apply -auto-approve
+      
