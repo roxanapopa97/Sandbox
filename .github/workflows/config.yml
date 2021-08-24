@@ -19,6 +19,8 @@ jobs:
         run: terraform init
       - name: Plan
         run: terraform plan
+      - name: Checkov Security Check
+        run: checkov -d .
       - name: Apply
         run: terraform apply -auto-approve
       - name: Destroy
