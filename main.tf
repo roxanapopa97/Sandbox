@@ -1,6 +1,7 @@
 resource "aws_kms_key" "mykey" {
   description             = var.kms_key_description
   deletion_window_in_days = var.kms_key_deletion_window_in_days
+  policy                  = data.aws_iam_policy_document.kms_key.json
 }
 
 resource "aws_s3_bucket" "encryptedbucket" {
