@@ -8,6 +8,7 @@ data "aws_iam_policy_document" "kms_key" {
           "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"
       ]
     }
+    effect = "Allow"
     actions = [
       "kms:GenerateDataKey",
       "kms:Decrypt",
