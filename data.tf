@@ -1,5 +1,7 @@
 data "aws_caller_identity" "current" {}
 
+data "aws_region" "current" {}
+
 data "aws_iam_policy_document" "kms_key" {
   statement {
     principals {
@@ -17,7 +19,7 @@ data "aws_iam_policy_document" "kms_key" {
       "kms:Describe"
     ]
     resources = [
-      aws_kms_key.mykey.arn
+      "arn:aws:kms:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:alias/${var.kms_key_alias_name}"
     ]
   }
 }

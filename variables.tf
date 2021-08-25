@@ -23,3 +23,9 @@ variable "s3_sse_algorithm" {
     default     = "aws:kms"
 
 }
+
+variable "kms_key_alias_name" {
+  description = "Alias name used for KMS key"
+  type        = string
+  default     = "encrypted_bucket_kms_key_alias"
+}
