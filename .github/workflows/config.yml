@@ -20,7 +20,7 @@ jobs:
       - name: Plan
         run: terraform plan
       - name: Checkov Security Check
-        run: checkov -d .
+        run: checkov --quiet -d .
       - name: Apply
         run: terraform apply -auto-approve
       - name: Destroy
