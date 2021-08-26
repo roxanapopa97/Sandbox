@@ -2,14 +2,6 @@ data "aws_caller_identity" "current" {}
 
 data "aws_region" "current" {}
 
-data "aws_iam_role" "role" {
-  name = var.cross_region_role_name
-}
-
-data "aws_s3_bucket" "cross-region-bucket" {
-  bucket = var.cross_region_bucket_name
-}
-
 data "aws_iam_policy_document" "kms_key" {
   statement {
     sid = "Enable IAM User Permissions"

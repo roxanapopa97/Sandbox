@@ -32,14 +32,14 @@ resource "aws_s3_bucket" "encryptedbucket" {
   }
 
   replication_configuration {
-    role = data.aws_iam_role.role.arn
+    role = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/${var.cross_region_role_name}"
     rules {
       id     = "foobar"
       prefix = "foo"
       status = "Enabled"
 
       destination {
-        bucket        = data.aws_s3_bucket.cross-region-bucket.arn
+        bucket        = "arn:aws:s3:::${var.cross_region_bucket_name}"
         storage_class = "STANDARD"
       }
     }
