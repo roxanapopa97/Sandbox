@@ -20,8 +20,8 @@ data "aws_iam_policy_document" "kms_key" {
     ]
 
     condition {
-      test     = "StringLike"
-      variable = "aws:SourceAccount"
+      test     = "StringEquals"
+      variable = "kms:CallerAccount"
 
       values = [
         data.aws_caller_identity.current.account_id
@@ -59,8 +59,8 @@ data "aws_iam_policy_document" "kms_key" {
     ]
 
     condition {
-      test     = "StringLike"
-      variable = "aws:SourceAccount"
+      test     = "StringEquals"
+      variable = "kms:CallerAccount"
 
       values = [
         data.aws_caller_identity.current.account_id
@@ -89,8 +89,8 @@ data "aws_iam_policy_document" "kms_key" {
     ]
 
     condition {
-      test     = "StringLike"
-      variable = "aws:SourceAccount"
+      test     = "StringEquals"
+      variable = "kms:CallerAccount"
 
       values = [
         data.aws_caller_identity.current.account_id
