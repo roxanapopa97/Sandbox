@@ -45,5 +45,5 @@ variable "cross_region_bucket_name" {
 variable "kms_key_alias_name" {
   description = "Alias name used for KMS key"
   type        = string
-  default     = "kms_encrypted_bucket_alias"
+  default     = "alias_kms_encrypted_bucket"
 }
