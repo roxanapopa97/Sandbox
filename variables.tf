@@ -30,6 +30,18 @@ variable "s3_logging_bucket_name" {
   default     = "s3-logging-bucket-216443581767"
 }
 
+variable "cross_region_role_name" {
+  description = "Name of the role used for S3 cross region replication"
+  type        = string
+  default     = "cross-region-bucket-replication"
+}
+
+variable "cross_region_bucket_name" {
+  description = "Name of the bucket used for cross region replication"
+  type        = string
+  default     = "cross-region-replication-bucket-216443581767"
+}
+
 # variable "kms_key_alias_name" {
 #   description = "Alias name used for KMS key"
 #   type        = string
