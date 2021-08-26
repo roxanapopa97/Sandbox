@@ -4,19 +4,32 @@ data "aws_region" "current" {}
 
 data "aws_iam_policy_document" "kms_key" {
   statement {
+    sid = "Enable IAM User Permissions"
     principals {
       type = "AWS"
       identifiers = [
-          "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root",
+          "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"
+      ]
+    }
+    effect = "Allow"
+    actions = [
+      "kms:*"
+    ]
+    resources = [
+      "*"
+    ]
+  }
+
+  statement {
+    sid = "Allow access for Key Administrators"
+    principals {
+      type = "AWS"
+      identifiers = [
           "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/terraform"
       ]
     }
     effect = "Allow"
     actions = [
-      "kms:GenerateDataKey",
-      "kms:Decrypt",
-      "kms:ReEncrypt",
-      "kms:Encrypt",
       "kms:Create*",
       "kms:Describe*",
       "kms:Enable*",
@@ -27,11 +40,62 @@ data "aws_iam_policy_document" "kms_key" {
       "kms:Disable*",
       "kms:Get*",
       "kms:Delete*",
+      "kms:TagResource",
+      "kms:UntagResource",
       "kms:ScheduleKeyDeletion",
       "kms:CancelKeyDeletion"
     ]
     resources = [
-      "arn:aws:kms:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:alias/${var.kms_key_alias_name}"
+      "*"
     ]
+  }
+
+  statement {
+    sid = "Allow use of the key"
+    principals {
+      type = "AWS"
+      identifiers = [
+          "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/terraform"
+      ]
+    }
+    effect = "Allow"
+    actions = [
+      "kms:Encrypt",
+      "kms:Decrypt",
+      "kms:ReEncrypt*",
+      "kms:GenerateDataKey*",
+      "kms:DescribeKey"
+    ]
+    resources = [
+      "*"
+    ]
+  }
+
+  statement {
+    sid = "Allow attachment of persistent resources"
+    principals {
+      type = "AWS"
+      identifiers = [
+          "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/terraform"
+      ]
+    }
+    effect = "Allow"
+    actions = [
+      "kms:CreateGrant",
+      "kms:ListGrants",
+      "kms:RevokeGrant"
+    ]
+    resources = [
+      "*"
+    ]
+
+    condition {
+      test     = "Bool"
+      variable = "kms:GrantIsForAWSResource"
+
+      values = [
+        "true"
+      ]
+    }
   }
 }

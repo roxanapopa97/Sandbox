@@ -4,10 +4,10 @@ resource "aws_kms_key" "mykey" {
   policy                  = data.aws_iam_policy_document.kms_key.json
 }
 
-resource "aws_kms_alias" "a" {
-  name          = "alias/${var.kms_key_alias_name}"
-  target_key_id = aws_kms_key.mykey.key_id
-}
+# resource "aws_kms_alias" "a" {
+#   name          = "alias/${var.kms_key_alias_name}"
+#   target_key_id = aws_kms_key.mykey.key_id
+# }
 
 resource "aws_s3_bucket" "encryptedbucket" {
   bucket = "${var.s3_bucket_name}-${data.aws_caller_identity.current.account_id}"
