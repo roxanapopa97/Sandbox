@@ -12,6 +12,7 @@ resource "aws_kms_alias" "a" {
 
 resource "aws_s3_bucket" "encryptedbucket" {
   bucket = "${var.s3_bucket_name}-${data.aws_caller_identity.current.account_id}"
+  acl    = "log-delivery-write"
 
   server_side_encryption_configuration {
     rule {
