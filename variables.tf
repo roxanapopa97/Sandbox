@@ -24,6 +24,12 @@ variable "s3_sse_algorithm" {
 
 }
 
+variable "s3_logging_bucket_name" {
+  description = "Bucket used for storing logs about the created bucket"
+  type        = string
+  default     = "s3-logging-bucket-216443581767"
+}
+
 # variable "kms_key_alias_name" {
 #   description = "Alias name used for KMS key"
 #   type        = string
