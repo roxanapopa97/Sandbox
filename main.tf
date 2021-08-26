@@ -12,8 +12,6 @@ resource "aws_kms_key" "mykey" {
 
 resource "aws_s3_bucket" "encryptedbucket" {
   bucket = "${var.s3_bucket_name}-${data.aws_caller_identity.current.account_id}"
-  block_public_acls   = true
-  block_public_policy = true
 
   server_side_encryption_configuration {
     rule {
@@ -32,4 +30,11 @@ resource "aws_s3_bucket" "encryptedbucket" {
     target_bucket = var.s3_logging_bucket_name
     target_prefix = "${var.s3_bucket_name}-${data.aws_caller_identity.current.account_id}"
   }
+}
+
+resource "aws_s3_bucket_public_access_block" "access" {
+  bucket = aws_s3_bucket.encryptedbucket.id
+
+  block_public_acls   = true
+  block_public_policy = true
 }
