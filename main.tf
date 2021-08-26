@@ -27,7 +27,7 @@ resource "aws_s3_bucket" "encryptedbucket" {
   }
 
   logging {
-    target_bucket = var.s3_logging_bucket_name
+    target_bucket = "s3://${var.s3_logging_bucket_name}"
     target_prefix = "${var.s3_bucket_name}-${data.aws_caller_identity.current.account_id}"
   }
 
