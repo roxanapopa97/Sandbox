@@ -23,8 +23,8 @@ jobs:
         run: checkov --quiet -d .
       - name: Apply
         run: terraform apply -auto-approve
-      # - name: Destroy
-      #   run: terraform destroy -auto-approve
+      - name: Destroy
+        run: terraform destroy -auto-approve
         
       
       
