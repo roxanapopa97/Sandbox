@@ -42,8 +42,8 @@ variable "cross_region_bucket_name" {
   default     = "cross-region-replication-bucket-216443581767"
 }
 
-# variable "kms_key_alias_name" {
-#   description = "Alias name used for KMS key"
-#   type        = string
-#   default     = "encrypted_bucket_kms_key_alias"
-# }
+variable "kms_key_alias_name" {
+  description = "Alias name used for KMS key"
+  type        = string
+  default     = "encrypted_bucket_kms_key_alias"
+}
