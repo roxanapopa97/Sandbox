@@ -43,6 +43,12 @@ variable "create_iam_role" {
     default     = false
 }
 
+variable "assume_role_policy" {
+    description = "Policy that grants an entity permission to assume the role"
+    type        = string
+    default     = null
+}
+
 variable "role_name" {
     description = "Friendly name of the role"
     type        = string

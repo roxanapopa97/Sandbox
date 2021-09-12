@@ -11,6 +11,7 @@ resource "aws_iam_policy" "this" {
 resource "aws_iam_role" "this" {
   count                 = var.create_iam_role ? 1 : 0
   name                  = var.role_name
+  assume_role_policy    = var.assume_role_policy
   description           = var.role_description
   force_detach_policies = var.role_force_detach_policies
 
