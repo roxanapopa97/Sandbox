@@ -42,30 +42,30 @@ output "policy_tags" {
 # outputs for aws_iam_role.this
 output "role_arn" {
     description = "Amazon Resource Name (ARN) specifying the role"
-    value = aws_iam_role.this[0].arn
+    value = var.create_iam_role ? aws_iam_role.this[0].arn : null
 }
 
 output "role_create_date" {
     description = "Creation date of the IAM role"
-    value = aws_iam_role.this[0].create_date
+    value = var.create_iam_role ? aws_iam_role.this[0].create_date : null
 }
 
 output "role_id" {
     description = "Name of the role"
-    value = aws_iam_role.this[0].id
+    value = var.create_iam_role ? aws_iam_role.this[0].id : null
 }
 
 output "role_name" {
     description = "Name of the role"
-    value = aws_iam_role.this[0].name
+    value = var.create_iam_role ? aws_iam_role.this[0].name : null
 }
 
 output "role_tags" {
     description = " A map of tags assigned to the resource, including those inherited from the provider"
-    value = aws_iam_role.this[0].tags_all
+    value = var.create_iam_role ? aws_iam_role.this[0].tags_all : null
 }
 
 output "role_unique_id" {
     description = "Stable and unique string identifying the role"
-    value = aws_iam_role.this[0].unique_id
+    value = var.create_iam_role ? aws_iam_role.this[0].unique_id : null
 }
