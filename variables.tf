@@ -8,6 +8,7 @@ variable "create_iam_policy" {
 variable "policy_name" {
     description = "The name of the policy"
     type        = string
+    default     = null
 }
 
 variable "policy_path" {
@@ -19,11 +20,13 @@ variable "policy_path" {
 variable "policy_description" {
     description = " Description of the IAM policy"
     type        = string
+    default     = null 
 }
 
 variable "policy_document" {
     description = "The policy document"
     type        = string
+    default     = null
 }
 
 variable "policy_tags" {
@@ -43,11 +46,13 @@ variable "create_iam_role" {
 variable "role_name" {
     description = "Friendly name of the role"
     type        = string
+    default     = null
 }
 
 variable "role_description" {
     description = "Description of the role"
     type        = string
+    default     = null
 }
 
 variable "role_force_detach_policies" {
