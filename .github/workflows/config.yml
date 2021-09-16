@@ -9,10 +9,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Init
-        run: terraform init
-      - name: Plan
-        run: terraform plan
-      - name: Apply
-        run: terraform apply -auto-approve
+      - name: Run Pytest
+        run: pytest tests/
+      # - name: Init
+      #   run: terraform init
+      # - name: Plan
+      #   run: terraform plan
+      # - name: Apply
+      #   run: terraform apply -auto-approve
       
