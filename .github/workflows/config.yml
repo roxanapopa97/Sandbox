@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Run Pytest
-        run: pytest test/
+        run: pytest tests/
       # - name: Init
       #   run: terraform init
       # - name: Plan
