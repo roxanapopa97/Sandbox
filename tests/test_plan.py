@@ -26,7 +26,7 @@ def plan_out(fixtures_dir):
 
 
 def test_output_attributes(plan_out):
-  assert plan_out.format_version == "0.1"
+  assert plan_out.format_version == "0.2"
 
 
 def test_variables(plan_out):
