@@ -23,8 +23,7 @@ jobs:
           terraform show -json tfplan.binary > plan_output.json
       - name: Run Pytest
         run:
-          cd tests 
-          pytest
+          pytest tests/
 
       # - name: Init
       #   run: terraform init
