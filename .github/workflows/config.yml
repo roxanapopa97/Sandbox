@@ -20,6 +20,8 @@ jobs:
           cd fixtures
           terraform init
           terraform plan --out tfplan.binary
+          pwd
+          ls -lah
           terraform show -json tfplan.binary > plan_output.json
       - name: Run Pytest
         run: pytest tests/
