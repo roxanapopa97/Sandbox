@@ -5,12 +5,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     container: 
-      image: roxanapopa/docker-git-workflows:v0.3
+      image: roxanapopa/docker-git-workflows:v0.4
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Run Pytest
-        run: pytest --version
+        run: pytest test/
       # - name: Init
       #   run: terraform init
       # - name: Plan
