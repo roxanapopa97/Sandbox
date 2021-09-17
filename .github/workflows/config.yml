@@ -9,8 +9,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Generate TF Plan
+        run: |
+          cd fixtures
+          terraform init
+          terraform plan --out tfplan.binary
+          terraform show -json tfplan.binary > plan_output.json
       - name: Run Pytest
         run: pytest tests/
+
       # - name: Init
       #   run: terraform init
       # - name: Plan
